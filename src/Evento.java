@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 public class Evento {
 
@@ -58,8 +57,21 @@ public class Evento {
         super();
     }
 
-    @Override
-    public String toString() {
-        return titolo + " " + x;
+
+    public int prenota (int postirichiesti) throws RuntimeException {
+        if (postirichiesti > postirimastidisponibili()) {
+            throw new RuntimeException("non ci sono posti rimasti disponibili");
+        }
+        numerodipostiprenotati = numerodipostiprenotati + postirichiesti;
+        return numerodipostiprenotati;
     }
-}
+
+        public int postirimastidisponibili () {
+            return numerodipostitotali - numerodipostiprenotati;
+        }
+
+        @Override
+        public String toString() {
+            return titolo + " " + x;
+        }
+    }
