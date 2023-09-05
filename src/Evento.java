@@ -5,7 +5,7 @@ public class Evento {
     //ATTRIBUTI
 
     private String titolo;
-    private LocalDate x ;
+    private LocalDate x;
     private int numerodipostitotali;
     private int numerodipostiprenotati;
 
@@ -57,9 +57,17 @@ public class Evento {
         super();
     }
 
+    public int disdici(int postirichiesti) throws RuntimeException {
+        if (postirichiesti <= 0 || x.isBefore(LocalDate.now())) {
+            throw new RuntimeException("non puoi disdire posti che non hai prenotato");
+        }
+        numerodipostiprenotati = numerodipostiprenotati - postirichiesti;
+        return numerodipostiprenotati;
+    }
+
 
     public int prenota (int postirichiesti) throws RuntimeException {
-        if (postirichiesti > postirimastidisponibili()) {
+        if (postirichiesti > postirimastidisponibili()|| x.isBefore(LocalDate.now())) {
             throw new RuntimeException("non ci sono posti rimasti disponibili");
         }
         numerodipostiprenotati = numerodipostiprenotati + postirichiesti;
@@ -69,6 +77,7 @@ public class Evento {
         public int postirimastidisponibili () {
             return numerodipostitotali - numerodipostiprenotati;
         }
+
 
         @Override
         public String toString() {
