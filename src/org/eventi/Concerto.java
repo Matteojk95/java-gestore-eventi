@@ -58,8 +58,16 @@ public class Concerto extends Evento {
     }
 
 
+    //metodo per formattare l'ora
+    public String getFormattedHour (){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String text= getOra().format(formatter);
+        return  text;
+    }
+
+
     @Override
     public String toString() {
-        return getFormattedDate() + " " + getOra() + " " + getTitolo() + " " + getPrezzo();
+        return getFormattedDate() + " " + getFormattedHour() + " " + getTitolo() + " " + getFormattedPrice();
     }
 }
