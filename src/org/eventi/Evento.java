@@ -1,3 +1,5 @@
+package org.eventi;
+
 import java.time.LocalDate;
 
 public class Evento {
@@ -77,6 +79,8 @@ public class Evento {
         public int postirimastidisponibili () {
             return numerodipostitotali - numerodipostiprenotati;
         }
+
+
 
 
         @Override
